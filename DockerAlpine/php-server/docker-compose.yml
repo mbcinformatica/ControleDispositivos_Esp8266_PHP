@@ -1,0 +1,11 @@
+version: '3'
+services:
+  web:
+    image: php:8.1-apache
+    ports:
+      - "8080:80"
+    volumes:
+      - ./index.php:/var/www/html/index.php
+      - ./phpinfo.php:/var/www/html/phpinfo.php
+      - ./api.php:/var/www/html/api.php
+    command: bash -c "docker-php-ext-install mysqli && apache2-foreground"

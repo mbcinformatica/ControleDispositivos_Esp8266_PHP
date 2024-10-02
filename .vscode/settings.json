@@ -1,0 +1,9 @@
+{
+    "arduino.analyzeOnSettingChange": true,
+    "files.associations": {
+        "*.embeddedhtml": "html",
+        "cmath": "cpp"
+    },
+    "C_Cpp.errorSquiggles": "disabled",
+    "editor.tabSize": 2
+}

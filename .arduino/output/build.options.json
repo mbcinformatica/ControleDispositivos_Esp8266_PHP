@@ -1,0 +1,11 @@
+{
+  "additionalFiles": "",
+  "builtInToolsFolders": "",
+  "compiler.optimization_flags": "",
+  "customBuildProperties": "",
+  "fqbn": "arduino:avr:uno",
+  "hardwareFolders": "C:\\Users\\Reginaldo.ti\\AppData\\Local\\Arduino15\\packages",
+  "otherLibrariesFolders": "\\\\server\\ti$\\Reginaldo.Ti\\Documents\\Arduino\\libraries",
+  "runtime.ide.version": "10607",
+  "sketchLocation": "D:\\Disco Backup\\ProjetosArduino\\controle-dispositivos\\.pio\\libdeps\\esp12f\\WiFiManager\\examples\\Advanced"
+}

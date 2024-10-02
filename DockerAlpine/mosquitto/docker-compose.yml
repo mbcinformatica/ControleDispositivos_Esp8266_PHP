@@ -1,0 +1,12 @@
+version: '3'
+
+services:
+    mosquitto:
+        image: eclipse-mosquitto:latest
+        restart: always
+        ports:
+            - 1883:1883
+        volumes:
+          - /home/mbc/docker/mosquitto/mosquitto.conf:/mosquitto/config/mosquitto.conf
+          - /home/mbc/docker/mosquitto/data:/mosquitto/data
+          - /home/mbc/docker/mosquitto/log:/mosquitto/log

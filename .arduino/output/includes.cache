@@ -1,0 +1,27 @@
+[
+  {
+    "Sourcefile": null,
+    "Include": "",
+    "Includepath": "C:\\Users\\Reginaldo.ti\\AppData\\Local\\Arduino15\\packages\\arduino\\hardware\\avr\\1.8.6\\cores\\arduino"
+  },
+  {
+    "Sourcefile": null,
+    "Include": "",
+    "Includepath": "C:\\Users\\Reginaldo.ti\\AppData\\Local\\Arduino15\\packages\\arduino\\hardware\\avr\\1.8.6\\variants\\standard"
+  },
+  {
+    "Sourcefile": "D:\\Disco Backup\\ProjetosArduino\\controle-dispositivos\\.arduino\\output\\sketch\\Advanced.ino.cpp",
+    "Include": "WiFiManager.h",
+    "Includepath": "\\\\server\\ti$\\Reginaldo.Ti\\Documents\\Arduino\\libraries\\WiFiManager"
+  },
+  {
+    "Sourcefile": "D:\\Disco Backup\\ProjetosArduino\\controle-dispositivos\\.arduino\\output\\sketch\\Advanced.ino.cpp",
+    "Include": "",
+    "Includepath": null
+  },
+  {
+    "Sourcefile": "\\\\server\\ti$\\Reginaldo.Ti\\Documents\\Arduino\\libraries\\WiFiManager\\WiFiManager.cpp",
+    "Include": "",
+    "Includepath": null
+  }
+]
