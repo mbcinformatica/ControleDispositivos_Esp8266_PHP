@@ -35,21 +35,34 @@ switch ($action) {
             return;
         }
 
-        // Insere o dispositivo
-        $sql = "INSERT INTO dispositivo (name, pin, imgon, imgoff, widthimg, heightimg, paddingimg, identifier) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        // Verifica se o dispositivo já existe
+        $sql = "SELECT COUNT(*) FROM dispositivo WHERE identifier = ?";
         $stmt = $conn->prepare($sql);
-        $stmt->bind_param("sissiiss", $name, $pin, $imgon, $imgoff, $widthimg, $heightimg, $paddingimg, $identifier);
+        $stmt->bind_param("s", $identifier);
+        $stmt->execute();
+        $stmt->bind_result($count);
+        $stmt->fetch();
+        $stmt->close();
 
-        if ($stmt->execute()) {
-            echo json_encode(['message' => 'Operação realizada com sucesso!']);
+        if ($count > 0) {
+            // Atualiza o estado do dispositivo existente
+
         } else {
-            echo json_encode([
-                'error' => 'Erro ao realizar a operação: ' . $stmt->error,
-                'post_data' => $_POST // Retornando o corpo do POST
-            ]);
+            // Insere o dispositivo
+            $sql = "INSERT INTO dispositivo (name, pin, imgon, imgoff, widthimg, heightimg, paddingimg, identifier) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param("sissiiss", $name, $pin, $imgon, $imgoff, $widthimg, $heightimg, $paddingimg, $identifier);
+            if ($stmt->execute()) {
+                echo json_encode(['message' => 'Operação realizada com sucesso!']);
+            } else {
+                echo json_encode([
+                    'error' => 'Erro ao realizar a operação: ' . $stmt->error,
+                    'post_data' => $_POST // Retornando o corpo do POST
+                ]);
+            }
+            $stmt->close();
         }
 
-        $stmt->close();
         break;
 
     case 'inserir-historico-dispositivo':
@@ -67,24 +80,24 @@ switch ($action) {
             return;
         }
 
-         // Obtém o idsensor da tabela sensor
-         $sql = "SELECT iddisp FROM dispositivo WHERE identifier = ?";
-         $stmt = $conn->prepare($sql);
-         $stmt->bind_param("s", $identifier);
-         $stmt->execute();
-         $stmt->bind_result($iddisp);
-         $stmt->fetch();
-         $stmt->close();
- 
-         if (is_null($iddisp)) {
-             echo json_encode(['error' => 'Sensor não encontrado.']);
-             return;
-         }
- 
-         // Insere o histórico do sensor
-         $sql = "INSERT INTO historico_dispositivo (iddisp, state) VALUES (?, ?)";
-         $stmt = $conn->prepare($sql);
-         $stmt->bind_param("ii", $iddisp, $state);
+        // Obtém o idsensor da tabela sensor
+        $sql = "SELECT iddisp FROM dispositivo WHERE identifier = ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("s", $identifier);
+        $stmt->execute();
+        $stmt->bind_result($iddisp);
+        $stmt->fetch();
+        $stmt->close();
+
+        if (is_null($iddisp)) {
+            echo json_encode(['error' => 'Sensor não encontrado.']);
+            return;
+        }
+
+        // Insere o histórico do sensor
+        $sql = "INSERT INTO historico_dispositivo (iddisp, state) VALUES (?, ?)";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("ii", $iddisp, $state);
 
         if ($stmt->execute()) {
             echo json_encode(['message' => 'Dados Inseridos com Sucesso!']);
@@ -114,25 +127,39 @@ switch ($action) {
             return;
         }
 
-        // Insere o dispositivo
-        $sql = "INSERT INTO sensor (name, unit, imgon, imgoff, identifier) VALUES (?, ?, ?, ?, ?)";
+        // Verifica se o dispositivo já existe
+        $sql = "SELECT COUNT(*) FROM sensor WHERE identifier = ?";
         $stmt = $conn->prepare($sql);
-        $stmt->bind_param("sssss", $name, $unit, $imgon, $imgoff, $identifier);
-
-        if ($stmt->execute()) {
-            echo json_encode(['message' => 'Operação realizada com sucesso!']);
-        } else {
-            echo json_encode([
-                'error' => 'Erro ao realizar a operação: ' . $stmt->error,
-                'post_data' => $_POST // Retornando o corpo do POST
-            ]);
-        }
-
+        $stmt->bind_param("s", $identifier);
+        $stmt->execute();
+        $stmt->bind_result($count);
+        $stmt->fetch();
         $stmt->close();
+
+        if ($count > 0) {
+            // Atualiza o estado do dispositivo existente
+
+        } else {
+            // Insere o dispositivo
+            $sql = "INSERT INTO sensor (name, unit, imgon, imgoff, identifier) VALUES (?, ?, ?, ?, ?)";
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param("sssss", $name, $unit, $imgon, $imgoff, $identifier);
+
+
+            if ($stmt->execute()) {
+                echo json_encode(['message' => 'Operação realizada com sucesso!']);
+            } else {
+                echo json_encode([
+                    'error' => 'Erro ao realizar a operação: ' . $stmt->error,
+                    'post_data' => $_POST // Retornando o corpo do POST
+                ]);
+            }
+            $stmt->close();
+        }
         break;
     case 'inserir-historico-sensor':
         $identifier = filter_input(INPUT_GET, 'identifier', FILTER_SANITIZE_STRING);
-        $valor      = filter_input(INPUT_GET, 'valor', FILTER_SANITIZE_STRING);
+        $valor = filter_input(INPUT_GET, 'valor', FILTER_SANITIZE_STRING);
         error_log("identifier: $identifier, valor: $valor");
 
         // Verifica se os valores não são nulos

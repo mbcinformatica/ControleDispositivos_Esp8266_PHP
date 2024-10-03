@@ -1,5 +1,5 @@
 #include <Arduino.h>
-#line 1 "D:\\Disco Backup\\ProjetosArduino\\controle-dispositivos\\.pio\\libdeps\\esp12f\\WiFiManager\\examples\\Advanced\\Advanced.ino"
+#line 1 "D:\\Disco Backup\\ProjetosArduino\\ControleDispositivos_Esp8266_PHP\\.pio\\libdeps\\esp12f\\WiFiManager\\examples\\Advanced\\Advanced.ino"
 /**
  * WiFiManager advanced demo, contains advanced configurartion options
  * Implements TRIGGEN_PIN button press, press for ondemand configportal, hold for 3 seconds for reset settings.
@@ -15,17 +15,17 @@ bool wm_nonblocking = false; // change to true to use non blocking
 WiFiManager wm;                    // global wm instance
 WiFiManagerParameter custom_field; // global param ( for non blocking w params )
 
-#line 16 "D:\\Disco Backup\\ProjetosArduino\\controle-dispositivos\\.pio\\libdeps\\esp12f\\WiFiManager\\examples\\Advanced\\Advanced.ino"
+#line 16 "D:\\Disco Backup\\ProjetosArduino\\ControleDispositivos_Esp8266_PHP\\.pio\\libdeps\\esp12f\\WiFiManager\\examples\\Advanced\\Advanced.ino"
 void setup();
-#line 92 "D:\\Disco Backup\\ProjetosArduino\\controle-dispositivos\\.pio\\libdeps\\esp12f\\WiFiManager\\examples\\Advanced\\Advanced.ino"
+#line 92 "D:\\Disco Backup\\ProjetosArduino\\ControleDispositivos_Esp8266_PHP\\.pio\\libdeps\\esp12f\\WiFiManager\\examples\\Advanced\\Advanced.ino"
 void checkButton();
-#line 131 "D:\\Disco Backup\\ProjetosArduino\\controle-dispositivos\\.pio\\libdeps\\esp12f\\WiFiManager\\examples\\Advanced\\Advanced.ino"
+#line 131 "D:\\Disco Backup\\ProjetosArduino\\ControleDispositivos_Esp8266_PHP\\.pio\\libdeps\\esp12f\\WiFiManager\\examples\\Advanced\\Advanced.ino"
 String getParam(String name);
-#line 142 "D:\\Disco Backup\\ProjetosArduino\\controle-dispositivos\\.pio\\libdeps\\esp12f\\WiFiManager\\examples\\Advanced\\Advanced.ino"
+#line 142 "D:\\Disco Backup\\ProjetosArduino\\ControleDispositivos_Esp8266_PHP\\.pio\\libdeps\\esp12f\\WiFiManager\\examples\\Advanced\\Advanced.ino"
 void saveParamCallback();
-#line 148 "D:\\Disco Backup\\ProjetosArduino\\controle-dispositivos\\.pio\\libdeps\\esp12f\\WiFiManager\\examples\\Advanced\\Advanced.ino"
+#line 148 "D:\\Disco Backup\\ProjetosArduino\\ControleDispositivos_Esp8266_PHP\\.pio\\libdeps\\esp12f\\WiFiManager\\examples\\Advanced\\Advanced.ino"
 void loop();
-#line 16 "D:\\Disco Backup\\ProjetosArduino\\controle-dispositivos\\.pio\\libdeps\\esp12f\\WiFiManager\\examples\\Advanced\\Advanced.ino"
+#line 16 "D:\\Disco Backup\\ProjetosArduino\\ControleDispositivos_Esp8266_PHP\\.pio\\libdeps\\esp12f\\WiFiManager\\examples\\Advanced\\Advanced.ino"
 void setup()
 {
   WiFi.mode(WIFI_STA); // explicitly set mode, esp defaults to STA+AP

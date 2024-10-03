@@ -8,4 +8,7 @@ services:
       - ./index.php:/var/www/html/index.php
       - ./phpinfo.php:/var/www/html/phpinfo.php
       - ./api.php:/var/www/html/api.php
+      - ./listar_dispositivos.php:/var/www/html/listar_dispositivos.php
+      - ./cadastrar_dispositivos.php:/var/www/html/cadastrar_dispositivos.php
+      - ./alterar_dispositivos.php:/var/www/html/alterar_dispositivos.php
     command: bash -c "docker-php-ext-install mysqli && apache2-foreground"

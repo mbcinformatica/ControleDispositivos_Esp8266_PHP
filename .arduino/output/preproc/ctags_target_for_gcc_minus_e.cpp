@@ -1,9 +1,9 @@
-# 1 "D:\\Disco Backup\\ProjetosArduino\\controle-dispositivos\\.pio\\libdeps\\esp12f\\WiFiManager\\examples\\Advanced\\Advanced.ino"
+# 1 "D:\\Disco Backup\\ProjetosArduino\\ControleDispositivos_Esp8266_PHP\\.pio\\libdeps\\esp12f\\WiFiManager\\examples\\Advanced\\Advanced.ino"
 /**
  * WiFiManager advanced demo, contains advanced configurartion options
  * Implements TRIGGEN_PIN button press, press for ondemand configportal, hold for 3 seconds for reset settings.
  */
-# 6 "D:\\Disco Backup\\ProjetosArduino\\controle-dispositivos\\.pio\\libdeps\\esp12f\\WiFiManager\\examples\\Advanced\\Advanced.ino" 2
+# 6 "D:\\Disco Backup\\ProjetosArduino\\ControleDispositivos_Esp8266_PHP\\.pio\\libdeps\\esp12f\\WiFiManager\\examples\\Advanced\\Advanced.ino" 2
 
 
 

@@ -107,8 +107,7 @@ void inserirDispositivo(Device *device)
     // Monta a URL para inserir o dispositivo, incluindo todos os parâmetros necessários
     String urlDispositivo = String(site_url) + "?action=inserir-dispositivo&name=" + String(urlencode(device->name)) +
     "&pin=" + (device->pin) + "&imgon=" + String(urlencode(device->imgon)) + "&imgoff=" + String(urlencode(device->imgoff)) +
-    "&widthimg=" + (device->widthimg) + "&heightimg=" + (device->heightimg) + "&paddingimg=" + String(urlencode(device->paddingimg)) +
-    "&identifier=" + String(device->identifier);
+    "&widthimg=" + (device->widthimg) + "&heightimg=" + (device->heightimg) + "&paddingimg=" + String(urlencode(device->paddingimg)) + "&identifier=" + String(device->identifier);
 
     http.begin(wifiClient, urlDispositivo);             // Inicia a conexão HTTP com a URL especificada
     http.addHeader("Content-Type", "application/json"); // Adiciona o cabeçalho de conteúdo JSON
@@ -120,7 +119,6 @@ void inserirDispositivo(Device *device)
         String response = http.getString(); // Obtém a resposta do servidor
         Serial.println(httpResponseCode);   // Imprime o código de resposta no console
         Serial.println(response);           // Imprime a resposta do servidor no console
-        Serial.println(urlDispositivo);     // Imprime a URL no console
     }
     else
     {

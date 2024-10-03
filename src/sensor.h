@@ -137,10 +137,9 @@ void inserirSensor(DeviceSensor *devicesensor)
     // Verifica a resposta do servidor
     if (httpResponseCode > 0)
     {
-        String response = http.getString(); // Obtém a resposta do servidor
-        Serial.println(httpResponseCode);   // Imprime o código de resposta
-        Serial.println(response);           // Imprime a resposta do servidor
-        Serial.println(urlSensor);          // Imprime a URL da requisição
+      String response = http.getString(); // Obtém a resposta do servidor
+      Serial.println(httpResponseCode);   // Imprime o código de resposta
+      Serial.println(response);           // Imprime a resposta do servidor
     }
     else
     {
@@ -158,7 +157,6 @@ void inserirHistoricoSensor(DeviceSensor *devicesensor)
 
     // Monta a URL para inserir o histórico do sensor, incluindo o identificador e o valor do sensor
     String urlSensor = String(site_url) + "?action=inserir-historico-sensor&identifier=" + String(devicesensor->identifier) + "&valor=" + String(urlencode(devicesensor->getValue()));
-    Serial.println(urlSensor); // Imprime a URL no console para depuração
 
     http.begin(wifiClient, urlSensor);                  // Inicia a conexão HTTP com a URL especificada
     http.addHeader("Content-Type", "application/json"); // Adiciona o cabeçalho de conteúdo JSON
@@ -170,7 +168,6 @@ void inserirHistoricoSensor(DeviceSensor *devicesensor)
         String response = http.getString(); // Obtém a resposta do servidor
         Serial.println(httpResponseCode);   // Imprime o código de resposta no console
         Serial.println(response);           // Imprime a resposta do servidor no console
-        Serial.println(urlSensor);          // Imprime a URL no console
     }
     else
     {

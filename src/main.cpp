@@ -60,6 +60,9 @@ void handleComando()
     }
 }
 
+
+
+
 // Função para lidar com requisições de dispositivos
 void handleDispositivos()
 {
