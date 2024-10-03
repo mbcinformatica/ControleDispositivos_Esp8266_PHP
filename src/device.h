@@ -103,6 +103,7 @@ void setupDevices()
 
 void inserirDispositivo(Device *device)
 {
+    
     HTTPClient http; // Cria um objeto HTTPClient para realizar a requisição HTTP
     // Monta a URL para inserir o dispositivo, incluindo todos os parâmetros necessários
     String urlDispositivo = String(site_url) + "?action=inserir-dispositivo&name=" + String(urlencode(device->name)) +
