@@ -1,5 +1,9 @@
 <?php
 header('Content-Type: application/json; charset=utf-8');
+header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
+header("Access-Control-Allow-Headers: Content-Type");
+
 $servername = "192.168.1.198";
 $username = "root";
 $password = "password";
@@ -45,26 +49,59 @@ switch ($action) {
         $stmt->close();
 
         if ($count > 0) {
-            // Atualiza o estado do dispositivo existente
-
+            // Atualiza o dispositivo existente
+            $sql = "UPDATE dispositivo SET pin = ?, imgon = ?, imgoff = ?, widthimg = ?, heightimg = ?, paddingimg = ? WHERE identifier = ?";
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param("issiiss",  $pin, $imgon, $imgoff, $widthimg, $heightimg, $paddingimg, $identifier);
+            if ($stmt->execute()) {
+                echo json_encode(['message' => 'Dispositivo atualizado com sucesso!']);
+            } else {
+                echo json_encode([
+                    'error' => 'Erro ao atualizar dispositivo: ' . $stmt->error,
+                    'post_data' => $_POST // Retornando o corpo do POST
+                ]);
+            }
+            $stmt->close();
         } else {
             // Insere o dispositivo
             $sql = "INSERT INTO dispositivo (name, pin, imgon, imgoff, widthimg, heightimg, paddingimg, identifier) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
             $stmt = $conn->prepare($sql);
             $stmt->bind_param("sissiiss", $name, $pin, $imgon, $imgoff, $widthimg, $heightimg, $paddingimg, $identifier);
             if ($stmt->execute()) {
-                echo json_encode(['message' => 'Operação realizada com sucesso!']);
+                echo json_encode(['message' => 'Dispositivo inserido com sucesso!']);
             } else {
                 echo json_encode([
-                    'error' => 'Erro ao realizar a operação: ' . $stmt->error,
+                    'error' => 'Erro ao inserir dispositivo: ' . $stmt->error,
                     'post_data' => $_POST // Retornando o corpo do POST
                 ]);
             }
             $stmt->close();
         }
-
         break;
-
+    case 'listar-dispositivos':
+        $sql = "SELECT iddisp, name, pin, imgon, imgoff, widthimg, heightimg, paddingimg, identifier FROM dispositivo";
+        $result = $conn->query($sql);
+        $dispositivos = [];
+        while ($row = $result->fetch_assoc()) {
+            $dispositivos[] = $row;
+        }
+        echo json_encode($dispositivos);
+        break;
+    case 'obter-dispositivo':
+        $iddisp = filter_input(INPUT_GET, 'iddisp', FILTER_SANITIZE_NUMBER_INT);
+        if ($iddisp) {
+            $sql = "SELECT * FROM dispositivo WHERE iddisp = ?";
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param("i", $iddisp);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $dispositivo = $result->fetch_assoc();
+            echo json_encode($dispositivo);
+            $stmt->close();
+        } else {
+            echo json_encode(['error' => 'ID do dispositivo não fornecido']);
+        }
+        break;
     case 'inserir-historico-dispositivo':
         $identifier = filter_input(INPUT_GET, 'identifier', FILTER_SANITIZE_STRING);
         $state = filter_input(INPUT_GET, 'state', FILTER_SANITIZE_NUMBER_INT);

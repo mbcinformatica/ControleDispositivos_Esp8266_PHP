@@ -46,10 +46,6 @@ if (!window.sensoresController) {
           imgsensor.src = sensor.imagen;
           const inputsensor = itemsensor.querySelector("input");
           inputsensor.value = `${sensor.valor} ${sensor.unidade}`;
-          
-          console.log(inputsensor);
-       
-          
         });
       }
 
